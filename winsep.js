@@ -192,7 +192,6 @@ class Section extends ELEM{
     }
     _axis = AXIS_UNSET;
     set axis(val){
-        console.log("setting axis: ",val);
         this.e.classList.remove(`${AXIS_STR[this._axis]}`);
         this.e.classList.add(`${AXIS_STR[val]}`);
         this._axis = val;
@@ -318,15 +317,12 @@ class Section extends ELEM{
                 this.insertSection_back(section);
             }
         }else{//this.axis unset or orthogonal
-            console.log("ping");
             if(this.sectionCnt === 0){
                 this.push_back(elem);
             }else{
                 //group all children and move to the sub node
                 let sub = new Section().moveChildrenFrom(this);
-                console.log("grouping complete");
                 this.add(sub);
-                console.log("add complete");
                 if(order === FRONT){
                     this.push_front(sub).portion = 0.5;
                     this.push_front(new Separator);
@@ -342,13 +338,11 @@ class Section extends ELEM{
         return elem;
     }
     moveChildrenFrom(section){//move children from section to this
-        console.log("moving",section,this);
         this.axis = section.axis;
         section.axis = AXIS_UNSET;
         for(let c of section.children.loop()){
             this.push_back(c);
         }
-        console.log("move complete");
         return this;
     }
     get sectionCnt(){
