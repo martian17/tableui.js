@@ -278,7 +278,7 @@ class Section extends ELEM{
         }
         this.adjustPortionPostRemoval();
         
-        if(this.children.size === 1){
+        if(this.sectionCnt === 1){
             //unwrap child
             let child = this.children.getHead();
             if(child instanceof Section){
@@ -286,7 +286,7 @@ class Section extends ELEM{
                 this.removeChild(child);
             }
         }
-        if(this.children.size === 0 && this.parent instanceof Section){
+        if(this.sectionCnt === 0 && this.parent instanceof Section){
             this.parent.removeSection(this);
         }
     }
@@ -319,7 +319,7 @@ class Section extends ELEM{
             }
         }else{//this.axis unset or orthogonal
             console.log("ping");
-            if(this.children.size === 0){
+            if(this.sectionCnt === 0){
                 this.push_back(elem);
             }else{
                 //group all children and move to the sub node
@@ -336,7 +336,7 @@ class Section extends ELEM{
                     this.push_back(new Separator);
                     this.push_back(section).portion = 0.5;
                 }
-                if(this.children.size !== 1)this.axis = axis;
+                if(this.sectionCnt > 1)this.axis = axis;
             }
         }
     }
@@ -349,6 +349,9 @@ class Section extends ELEM{
         }
         console.log("move complete");
         return this;
+    }
+    get sectionCnt(){
+        return Math.floor((this.children.size+1)/2);
     }
 };
 
