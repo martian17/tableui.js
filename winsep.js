@@ -257,13 +257,13 @@ class Section extends ELEM{
         return elem;
     }
     insertSection_before(c1,c2){
-        this.adjustPortionPreInsertion(elem);
+        this.adjustPortionPreInsertion(c1);
         this.insertBefore(c1,c2);
         this.insertBefore(new Separator,c2);
         return c1;
     }
     insertSection_after(c1,c2){
-        this.adjustPortionPreInsertion(elem);
+        this.adjustPortionPreInsertion(c2);
         this.insertAfter(c1,c2);
         this.insertAfter(c1,new Separator);
         return c2;
