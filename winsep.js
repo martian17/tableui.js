@@ -65,7 +65,7 @@ STYLE += /*css*/`
 }
 
 .section.horizontal>.separator{
-    width:11px;
+    width:10px;
     cursor:col-resize;
 }
 .section.horizontal>.separator::after{
@@ -75,7 +75,7 @@ STYLE += /*css*/`
     top:30%;
 }
 .section.vertical>.separator{
-    height:11px;
+    height:10px;
     cursor:row-resize;
 }
 .section.vertical>.separator::after{
@@ -123,7 +123,7 @@ class Separator extends ELEM{
     }
     registerEvents(){
         let that = this;
-        let sepwidth = 11;
+        let sepwidth = 10;
         onDrag(this,(x,y,move,end)=>{
 
             move((x,y)=>{
