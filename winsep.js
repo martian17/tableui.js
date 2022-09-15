@@ -353,6 +353,20 @@ class Section extends ELEM{
     get sectionCnt(){
         return Math.floor((this.children.size+1)/2);
     }
+    *loopSections(){
+        for(let c of this.children.loop()){
+            if(c instanceof Section){
+                yield c;
+            }
+        }
+    }
+    *loopSeparators(){
+        for(let c of this.children.loop()){
+            if(c instanceof Separator){
+                yield c;
+            }
+        }
+    }
 };
 
 {
