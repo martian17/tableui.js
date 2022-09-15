@@ -339,6 +339,7 @@ class Section extends ELEM{
                 if(this.sectionCnt > 1)this.axis = axis;
             }
         }
+        return elem;
     }
     moveChildrenFrom(section){//move children from section to this
         console.log("moving",section,this);
