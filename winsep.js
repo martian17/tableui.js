@@ -87,6 +87,7 @@ STYLE += /*css*/`
 
 let onDrag = function(elem,cb/*(move,end)*/,origin={rect:new DOMRect(0,0,0,0)}){
     elem.on("mousedown",(e)=>{
+        e.preventDefault();
         let moveHandler,endHandler;
         let rect = origin.rect;
         let x = e.pageX-rect.x;
