@@ -25,7 +25,7 @@ const ORDER_UNSET = 2;
 //map from direction -> order
 const ORDER = [FRONT,BACK,FRONT,BACK,ORDER_UNSET];
 
-let STYLE = "";
+STYLE = "";
 
 STYLE += /*css*/`
 .section{
