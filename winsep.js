@@ -31,7 +31,7 @@ STYLE += /*css*/`
 .section{
     position:relative;
     display:flex;
-    background-color:#2c2c2c;
+    background-color: #292937;
     overflow:hidden;
 }
 .section.horizontal{
@@ -48,17 +48,18 @@ STYLE += /*css*/`
 }
 
 .section>.separator{
-    background-color:#393939;
+    background-color: #22212c;
     position:relative;
     transition:background-color .2s;
 }
 .section>.separator:hover{
-    background-color:#444;
+    /*background-color:#444;*/
+    background-color:/*#1c1b24*/#353344;
 }
 
 .section>.separator::after{
     content:"";
-    background-color:#666;
+    background-color: #494a4f;
     position:absolute;
     border-radius:10px;
 }
