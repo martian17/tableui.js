@@ -3,7 +3,7 @@ const VERTICAL = 0;
 const HORIZONTAL = 1;
 const AXIS_UNSET = 2;
 
-const AXIS_STR = ["horizontal","vertical","axis_unset"];
+const AXIS_STR = ["vertical","horizontal","axis_unset"];
 
 const ORTHOGONAL = [HORIZONTAL,VERTICAL,AXIS_UNSET];
 
@@ -15,7 +15,7 @@ const BOTTOM = 3;
 const DIR_UNSET = 4;
 
 //maps from direction -> axis
-const AXIS = [VERTICAL,VERTICAL,HORIZONTAL,HORIZONTAL,AXIS_UNSET];
+const AXIS = [HORIZONTAL,HORIZONTAL,VERTICAL,VERTICAL,AXIS_UNSET];
 
 //enum order
 const FRONT = 0;
