@@ -117,22 +117,71 @@ let onDrag = function(elem,cb/*(move,end)*/,origin={rect:new DOMRect(0,0,0,0)}){
 class Separator extends ELEM{
     constructor(){
         super("div","class:separator");
+        //wait for it to be appended
+        setTimeout(this.registerEvents.bind(this),0);
+    }
+    registerEvents(){
+        let that = this;
+        let sepwidth = 11;
         onDrag(this,(x,y,move,end)=>{
-            
+
             move((x,y)=>{
+                let parent = that.parent;
                 //calculate the target portion
                 let sepcnt = 0;
-                for(let c of this.parent.loopUntil(this)){
-                    if(c instanceof Separator)sepcnt++
+                for(let c of parent.children.loopUntil(that)){
+                    if(c instanceof Separator)sepcnt++;
                 }
-                for(let c of this.parent.loopFrom(this)){
-                    
+                let midportion;
+                let rect = parent.rect;
+                if(parent.axis === HORIZONTAL){
+                    midportion = (x-5-sepwidth*sepcnt)/(rect.width-sepwidth*(parent.sectionCnt-1));
+                }else{//vertical
+                    midportion = (y-5-sepwidth*sepcnt)/(rect.height-sepwidth*(parent.sectionCnt-1));
                 }
+                if(midportion < 0)midportion = 0;
+                if(midportion > 1)midportion = 1;
+                let midportionR = 1-midportion;
+                
+                for(let c of parent.children.loopUntil(that)){
+                    if(c instanceof Section){
+                        if(midportion < c.portion){
+                            c.portion = midportion;
+                        }
+                        midportion -= c.portion;
+                    }
+                }
+                that.getPrev().portion += midportion;
+                
+                for(let c of parent.children.loopReverseUntil(that)){
+                    if(c instanceof Section){
+                        if(midportionR < c.portion){
+                            c.portion = midportionR;
+                        }
+                        midportionR -= c.portion;
+                    }
+                }
+                that.getNext().portion += midportionR;
+                
+                
+                
+                /*for(let c of parent.children.loopFrom(that)){
+                    if(c instanceof Section){
+                        if(midportion > c.portion){
+                            midportion -= c.portion;
+                            c.portion = 0;
+                        }else if(midportion > 0){
+                            c.portion -= midportion;
+                            midportion = 0;
+                            break;
+                        }
+                    }
+                }*/
             });
             end((x,y)=>{
                 
             });
-        });
+        },this.parent);
     }
 }
 
